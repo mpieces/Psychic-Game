@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Psychic Game</title>
+</head>
+<body>
+
+    <div>
+        <h1 id="directions-text">Guess what letter I'm thinking of!</h1>
+       
+        <p id="wins-text">Wins: </p>
+        <p id="losses-text">Losses: </p>
+        <p id="guesses-text">Your guesses so far: </p>
+        <p id="guesses-left">Number of guesses remaining: </p>
+    </div>
+
+        <script type="text/javascript">
+        
+        // VARIABLES
+        // ==========================================================================
+       
+        var wins = 0;
+        var losses = 0;
+        var letters = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+        var alreadyGuessedArray = [];
+        var guesses = 10;
+
+        var directionsText = document.getElementById("directions-text");
+        var winsText = document.getElementById("wins-text");
+        var lossesText = document.getElementById("losses-text");
+        var guessesText = document.getElementById("guesses-text")
+        var guessesLeft = document.getElementById("guesses-left");
+    
+        document.onkeyup = function(event) {
+        
+        var userGuess = event.key.toUpperCase();
+        
+        // console.log("User guess: " + userGuess);
+
+        var letter = letters[Math.floor(Math.random() * letters.length)];
+
+        // console.log("Computer's choice: " + letter);
+      
+      
+        if (userGuess === letter) {
+            alert("You guessed it");
+            wins++;
+        } else {
+            losses++;
+            guesses--;
+            if (!alreadyGuessedArray.includes(userGuess)) {
+                alreadyGuessedArray.push(userGuess);
+            }     
+        };
+      
+        
+        winsText.textContent = "Wins: " + wins;
+        lossesText.textContent = "Losses: " + losses;
+        guessesText.innerHTML = "Letters guessed so far: " + alreadyGuessedArray;
+        guessesLeft.textContent = "Number of guesses left: " + guesses;
+
+    }
+        
+        
+        </script>
+</body>
+</html>
